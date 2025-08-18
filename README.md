@@ -2,10 +2,10 @@
 
 The Dev Mode MCP server brings Figma directly into your workflow by providing important design information and context to AI agents generating code from Figma design files.
 
-> [!WARNING]  
+> [!WARNING]
 > 🚧 The Dev Mode MCP Server is currently in [open beta](https://help.figma.com/hc/en-us/articles/4406787442711). Some functions and settings may not yet be available. The feature may change and you may experience bugs or performance issues during the beta period.
 
-> [!NOTE]  
+> [!NOTE]
 > Available on a [Dev or Full seat](https://help.figma.com/hc/en-us/articles/27468498501527-Updates-to-Figma-s-pricing-seats-and-billing-experience#h_01JCPBM8X2MBEXTABDM92HWZG4) on the [Professional, Organization, or Enterprise plans](https://help.figma.com/hc/en-us/articles/360040328273-Figma-plans-and-features).
 
 ## Features
@@ -36,7 +36,11 @@ The Dev Mode MCP server brings Figma directly into your workflow by providing im
 You should see a confirmation message at the bottom of the screen letting you know the server is enabled and running.
 
 > [!TIP]
-> The server runs locally at `http://127.0.0.1:3845/mcp`. Keep this address handy for your configuration file in the next step.
+> The server runs locally at this location:
+> ```bash
+> http://127.0.0.1:3845/mcp
+> ```
+> Keep this address handy for your configuration file in the next step.
 
 ## Step 2: Set up your MCP client
 
@@ -298,7 +302,7 @@ You can provide this in whatever format your MCP client uses for instruction fil
 ```yaml
 ---
 description: Figma Dev Mode MCP rules
-globs: 
+globs:
 alwaysApply: true
 ---
 - The Figma Dev Mode MCP Server provides an assets endpoint which can serve image and SVG assets
