@@ -216,6 +216,12 @@ Use this tool to create a rule file that gives agents the context they need to g
 
 After running the tool, save the output to the appropriate `rules/` or `instructions/` directory so your agent can access it during code generation.
 
+### `get_metadata`
+
+Returns an XML representation of your selection containing basic properties such as layer IDs, names, types, position and sizes. You can use `get_code` on the resulting outline to retrieve only the styling information of the design you need. 
+ 
+This is useful for very large designs where `get_code` produces output with a large context size. It also works with multiple selections or the whole page if nothing is selected.
+
 ## Dev Mode MCP Server Settings
 
 These are additional settings you can toggle under Preferences and use with the MCP client.
