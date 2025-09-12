@@ -206,7 +206,7 @@ Retrieves a mapping between Figma node IDs and their corresponding code componen
 
 This mapping is used to connect Figma design elements directly to their React (or other framework) implementations, enabling seamless design-to-code workflows and ensuring that the correct components are used for each part of the design. If a Figma node is connected to a code component, this function helps you identify and use the exact component in your project.
 
-### `get_image`
+### `get_screenshot`
 
 This takes a screenshot of your selection to preserve layout fidelity. Keep this on unless you're managing token limits.
 
