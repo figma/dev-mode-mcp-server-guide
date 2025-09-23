@@ -186,7 +186,7 @@ claude mcp add --transport http figma-dev-mode-mcp-server http://127.0.0.1:3845/
 
 For more information, see [Anthropic's official documentation](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials#set-up-model-context-protocol-mcp).
 
-#### Windsurf (local only)
+#### Windsurf
 
 1. Open **Windsurf → Settings → Windsurf Settings** or use the shortcut `⌘ ,`.
 2. Navigate to **Cascade settings** and select **Open plugin store**.
