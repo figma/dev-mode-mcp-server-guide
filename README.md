@@ -24,7 +24,15 @@ The Dev Mode MCP server brings Figma directly into your workflow by providing im
 
   [Learn more about Code Connect →](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
 
-## Step 1: Enable the MCP Server
+## Installation & Setup
+
+### Step 1: Enabling the MCP server
+
+Figma provides two ways to use the MCP server. Remotely using our hosted server, and locally using Figma's desktop app.
+
+If you want to use our Remote server, there is nothing to enable, it's already on! To get the Local server set up, you'll need to follow the steps below.
+
+#### Enabling the local server
 
 1. Open the [Figma desktop app](https://www.figma.com/downloads/) and make sure you've [updated to the latest version](https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app#h_01HE5QD60DG6FEEDTZVJYM82QW).
 2. Create or open a Figma Design file.
@@ -42,17 +50,40 @@ You should see a confirmation message at the bottom of the screen letting you kn
 > ```
 > Keep this address handy for your configuration file in the next step.
 
-## Step 2: Set up your MCP client
+### Step 2: Set up your MCP client
 
-Once the server is running locally on the Figma desktop app, MCP clients will be able to connect to your server. Follow the instructions for your specific client to add the Dev Mode MCP server.
+Different MCP clients require slightly different setups to get connected to your MCP server. Follow the instructions below for your specific client to add the Dev Mode MCP server.
 
-### VS Code
+#### VS Code
 
 1. Use the shortcut `⌘ Shift P` to search for `MCP:Add Server`.
 2. Select `HTTP`.
-3. Paste the server url `http://127.0.0.1:3845/mcp` in the search bar, then hit `Enter`.
+3. Copy the correct server url from below, and paste the server url in the search bar. Then hit `Enter`.
+
+   Remote server url - `https://mcp.figma.com/mcp`
+
+   Local server url  - `http://127.0.0.1:3845/mcp`
+
 4. Type in `Figma Dev Mode MCP` when it asks for a Server ID, then hit `Enter`.
 5. Select whether you want to add this server globally or only for the current workspace. Once confirmed, you'll see a configuration like this in your `mcp.json` file:
+
+<table>
+<tr><th>Using the Remote MCP Server</th><th>Using the Local MCP Server</th></tr>
+<tr>
+<td>
+
+```json
+{
+  "servers": {
+    "Figma Dev Mode MCP": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
+    }
+  }
+}
+```
+</td>
+<td>
 
 ```json
 {
@@ -64,6 +95,9 @@ Once the server is running locally on the Figma desktop app, MCP clients will be
   }
 }
 ```
+</td>
+</tr>
+</table>
 
 6. Open the chat toolbar using `⌥⌘B` or `⌃⌘I` and switch to **Agent** mode.
 7. With the chat open, type in `#get_code` to confirm that the Dev Mode MCP server tools are available. If no tools are listed, restart the Figma desktop app and VS Code.
@@ -73,26 +107,86 @@ Once the server is running locally on the Figma desktop app, MCP clients will be
 >
 > For more information, see [VS Code's official documentation](https://code.visualstudio.com/docs/copilot/chat/mcp-servers).
 
-### Cursor
+#### Cursor
 
 1. Open **Cursor → Settings → Cursor Settings**.
 2. Go to the **MCP** tab.
 3. Click **+ Add new global MCP server**.
 4. Enter the following configuration and save:
 
+<table>
+<tr><th>Using the Remote MCP Server</th><th>Using the Local MCP Server</th></tr>
+<tr>
+<td>
+
 ```json
-   {
-     "mcpServers": {
-       "Figma": {
-         "url": "http://127.0.0.1:3845/mcp"
-       }
-     }
-   }
+{
+  "mcpServers": {
+    "Figma": {
+      "url": "https://mcp.figma.com/mcp"
+    }
+  }
+}
 ```
+</td>
+<td>
+
+```json
+{
+  "mcpServers": {
+    "Figma": {
+      "url": "http://127.0.0.1:3845/mcp"
+    }
+  }
+}
+```
+</td>
+</tr>
+</table>
 
 For more information, see [Cursor's official documentation](https://docs.cursor.com/context/model-context-protocol).
 
-### Windsurf
+#### Claude Code
+
+1. Open your terminal and run:
+
+
+
+<table>
+<tr><th>Using the Remote MCP Server</th><th>Using the Local MCP Server</th></tr>
+<tr>
+<td>
+
+```bash
+claude mcp add --transport http figma-dev-mode-mcp-server https://mcp.figma.com/mcp
+```
+</td>
+<td>
+
+```bash
+claude mcp add --transport http figma-dev-mode-mcp-server http://127.0.0.1:3845/mcp
+```
+</td>
+</tr>
+</table>
+
+2. Use the following commands to check MCP settings and manage servers:
+- List all configured servers
+  ```bash
+  claude mcp list
+  ```
+- Get details for a specific server
+  ```bash
+  claude mcp get my-server
+  ```
+- Remove a server
+  ```bash
+  claude mcp remove my-server
+  ```
+
+For more information, see [Anthropic's official documentation](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials#set-up-model-context-protocol-mcp).
+
+#### Windsurf
 
 1. Open **Windsurf → Settings → Windsurf Settings** or use the shortcut `⌘ ,`.
 2. Navigate to **Cascade settings** and select **Open plugin store**.
@@ -104,35 +198,28 @@ For more information, see [Windsurf's official documentation](https://docs.winds
 > [!NOTE]
 > For Windsurf, change the `url` property in the configuration file to `serverUrl` to avoid errors.
 
-### Claude Code
-
-1. Open your terminal and run:
-
-   ```bash
-   claude mcp add --transport http figma-dev-mode-mcp-server http://127.0.0.1:3845/mcp
-   ```
-
-2. Use the following commands to check MCP settings and manage servers:
-   - List all configured servers
-     ```bash
-     claude mcp list
-     ```
-   - Get details for a specific server
-     ```bash
-     claude mcp get my-server
-     ```
-   - Remove a server
-     ```bash
-     claude mcp remove my-server
-     ```
-
-For more information, see [Anthropic's official documentation](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials#set-up-model-context-protocol-mcp).
-
-### Other editors
+#### Other editors
 
 Other code editors and tools that support Streamable HTTP can also connect to the Dev Mode MCP server.
 
 If you're using a different editor or tool, check its documentation to confirm it supports Streamable HTTP based communication. If it does, you can manually add the Dev Mode MCP server using this configuration:
+
+<table>
+<tr><th>Using the Remote MCP Server</th><th>Using the Local MCP Server</th></tr>
+<tr>
+<td>
+
+```json
+{
+  "mcpServers": {
+    "Figma Dev Mode MCP": {
+      "url": "https://mcp.figma.com/mcp"
+    }
+  }
+}
+```
+</td>
+<td>
 
 ```json
 {
@@ -143,19 +230,15 @@ If you're using a different editor or tool, check its documentation to confirm i
   }
 }
 ```
+</td>
+</tr>
+</table>
 
-## Step 3: Prompt your MCP client
+## Prompting your MCP client
 
 The Dev Mode MCP server introduces a set of tools that help LLMs translate designs in Figma. Once connected, you can prompt your MCP client to access a specific design node.
 
 There are two ways to provide Figma design context to your AI client:
-
-### Selection-based
-
-1. Select a frame or layer inside Figma using the desktop app.
-2. Prompt your client to help you implement your current selection.
-
-   <img src="https://help.figma.com/hc/article_attachments/32209690330263" width="300" />
 
 ### Link-based
 
@@ -166,6 +249,14 @@ There are two ways to provide Figma design context to your AI client:
 
 > [!NOTE]
 > Your client won't be able to navigate to the selected URL, but it will extract the node-id that is required for the MCP server to identify which object to return information about.
+
+### Selection-based (local only)
+
+1. Select a frame or layer inside Figma using the desktop app.
+2. Prompt your client to help you implement your current selection.
+
+   <img src="https://help.figma.com/hc/article_attachments/32209690330263" width="300" />
+
 
 ## Tools and usage suggestions
 
@@ -186,7 +277,7 @@ Use this to generate code for your Figma selection using the MCP server. The def
 
   [Learn how to set up Code Connect for better component reuse →](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
 
-### `get_variable_defs`
+### `get_variable_defs` (local only)
 
 Returns variables and styles used in your selection—like colors, spacing, and typography.
 
@@ -197,7 +288,7 @@ Returns variables and styles used in your selection—like colors, spacing, and 
 - Get both names and values
   - "List the variable names and their values used in my Figma selection."
 
-### `get_code_connect_map`
+### `get_code_connect_map` (local only)
 
 Retrieves a mapping between Figma node IDs and their corresponding code components in your codebase. Specifically, it returns an object where each key is a Figma node ID, and the value contains:
 
@@ -218,11 +309,11 @@ After running the tool, save the output to the appropriate `rules/` or `instruct
 
 ### `get_metadata`
 
-Returns an XML representation of your selection containing basic properties such as layer IDs, names, types, position and sizes. You can use `get_code` on the resulting outline to retrieve only the styling information of the design you need. 
- 
+Returns an XML representation of your selection containing basic properties such as layer IDs, names, types, position and sizes. You can use `get_code` on the resulting outline to retrieve only the styling information of the design you need.
+
 This is useful for very large designs where `get_code` produces output with a large context size. It also works with multiple selections or the whole page if nothing is selected.
 
-## Dev Mode MCP Server Settings
+## Dev Mode Local MCP Server Settings
 
 These are additional settings you can toggle under Preferences and use with the MCP client.
 
@@ -303,7 +394,31 @@ You can provide this in whatever format your MCP client uses for instruction fil
 
 **Examples:**
 
-### Cursor
+#### Ensure consistently good output
+
+```yaml
+## Figma MCP Integration Rules
+These rules define how to translate Figma inputs into code for this project and must be followed for every Figma-driven change.
+
+### Required flow (do not skip)
+1. Run get_code first to fetch the structured representation for the exact node(s).
+2. If the response is too large or truncated, run get_metadata to get the high‑level node map and then re‑fetch only the required node(s) with get_code.
+3. Run get_screenshot for a visual reference of the node variant being implemented.
+4. Only after you have both get_code and get_screenshot, download any assets needed and start implementation.
+5. Translate the output (usually React + Tailwind) into this project's conventions, styles and framework.  Reuse the project's color tokens, components, and typography wherever possible.
+6. Validate against Figma for 1:1 look and behavior before marking complete.
+
+### Implementation rules
+- Treat the Figma MCP output (React + Tailwind) as a representation of design and behavior, not as final code style.
+- Replace Tailwind utility classes with the project's preferred utilities/design‑system tokens when applicable.
+- Reuse existing components (e.g., buttons, inputs, typography, icon wrappers) instead of duplicating functionality.
+- Use the project's color system, typography scale, and spacing tokens consistently.
+- Respect existing routing, state management, and data‑fetch patterns already adopted in the repo.
+- Strive for 1:1 visual parity with the Figma design. When conflicts arise, prefer design‑system tokens and adjust spacing or sizes minimally to match visuals.
+- Validate the final UI against the Figma screenshot for both look and behavior.
+```
+
+#### Cursor
 
 ```yaml
 ---
@@ -317,7 +432,7 @@ alwaysApply: true
 - IMPORTANT: do NOT use or create placeholders if a localhost source is provided
 ```
 
-### Claude Code
+#### Claude Code
 
 ```markdown
 # MCP Servers
@@ -328,7 +443,7 @@ alwaysApply: true
 - IMPORTANT: do NOT use or create placeholders if a localhost source is provided
 ```
 
-### General rules
+#### General quality rules
 
 ```
 - IMPORTANT: Always use components from `/path_to_your_design_system` when possible
@@ -343,7 +458,7 @@ Adding these once can dramatically reduce the need for repetitive prompting and 
 
 Be sure to check your IDE or MCP client's documentation for how to structure rules, and experiment to find what works best for your team. Clear, consistent guidance often leads to better, more reusable code with less back-and-forth.
 
-## Break down large selections
+### Break down large selections
 
 Break screens into smaller parts (like components or logical chunks) for faster, more reliable results.
 
@@ -355,6 +470,36 @@ Large selections can slow the tools down, cause errors, or result in incomplete 
 This helps keep the context manageable and results more predictable, both for you and for the model.
 
 If something in the output doesn't look quite right, it usually helps to revisit the basics: how the Figma file is structured, how the prompt is written, and what context is being sent. Following the best practices above can make a big difference, and often leads to more consistent, reusable code.
+
+## Bringing Make context to your agent
+
+The Make + MCP integration makes it easier to take prototypes from **design to production**. By connecting Make projects directly to your agent via MCP, you can extract resources and reuse them in your codebase. This reduces friction when extending prototypes into real applications, and ensures that design intent is faithfully carried through to implementation.
+
+With this integration, you can:
+
+• **Fetch project context** directly from Make (individual files or the whole project)
+• **Prompt to use existing code components** instead of starting from scratch
+• **Extend prototypes with real data** to validate and productionize designs faster
+
+### How it works
+
+> [!NOTE]
+> This integration leverages the MCP **resources capability**, which allows your agent to fetch context directly from Make projects. It is available only on clients that support MCP resources.
+
+#### Steps to fetch resources from Make
+
+1. **Prompt your agent to fetch context** by providing a valid Make link
+2. **Receive a list of available files** from your Make project
+3. **Download the files you want to fetch** when prompted
+
+### Example workflow
+
+**Goal:** Implement a popup component in your production codebase that matches the design and behavior defined in Make.
+
+1. Share your Make project link with your agent.
+2. Prompt the agent: *"I want to get the popup component behavior and styles from this Make file and implement it using my popup component."*
+
+Your agent will fetch the relevant context from Make and guide you in extending your existing popup component with the prototype's functionality and styles.
 
 # Icon Guidelines
 
