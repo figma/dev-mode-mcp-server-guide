@@ -30,7 +30,7 @@ The Dev Mode MCP server brings Figma directly into your workflow by providing im
 
 Figma provides two ways to use the MCP server. Remotely using our hosted server, and locally using Figma's desktop app.
 
-If you want to use our Remote server, there is nothing to enable, it's already on! To get the Local server setup, you'll need to follow the steps below.
+If you want to use our Remote server, there is nothing to enable, it's already on! To get the Local server set up, you'll need to follow the steps below.
 
 #### Enabling the local server
 
