@@ -24,8 +24,6 @@ The Dev Mode MCP server brings Figma directly into your workflow by providing im
 
   [Learn more about Code Connect →](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
 
----
-
 ## Installation & Setup
 
 ### Step 1: Enabling the MCP server
@@ -233,8 +231,6 @@ If you're using a different editor or tool, check its documentation to confirm i
 </tr>
 </table>
 
----
-
 ## Prompting your MCP client
 
 The Dev Mode MCP server introduces a set of tools that help LLMs translate designs in Figma. Once connected, you can prompt your MCP client to access a specific design node.
@@ -258,8 +254,6 @@ There are two ways to provide Figma design context to your AI client:
 
    <img src="https://help.figma.com/hc/article_attachments/32209690330263" width="300" />
 
-
----
 
 ## Tools and usage suggestions
 
@@ -316,8 +310,6 @@ Returns an XML representation of your selection containing basic properties such
 
 This is useful for very large designs where `get_code` produces output with a large context size. It also works with multiple selections or the whole page if nothing is selected.
 
----
-
 ## Dev Mode Local MCP Server Settings
 
 These are additional settings you can toggle under Preferences and use with the MCP client.
@@ -335,8 +327,6 @@ These are additional settings you can toggle under Preferences and use with the 
 Includes Code Connect mappings in the response, so the generated code can reuse components from your connected codebase where possible.
 
 > As you use the Dev Mode MCP server, you may see a popup inside Figma asking you for feedback. To give us feedback, [please use this form](https://form.asana.com/?k=jMdFq_1SBUOyh8_k3q76QA&d=10497086658021).
-
----
 
 # MCP best practices
 
@@ -478,8 +468,6 @@ This helps keep the context manageable and results more predictable, both for yo
 
 If something in the output doesn't look quite right, it usually helps to revisit the basics: how the Figma file is structured, how the prompt is written, and what context is being sent. Following the best practices above can make a big difference, and often leads to more consistent, reusable code.
 
----
-
 ## Bringing Make context to your agent
 
 The Make + MCP integration makes it easier to take prototypes from **design to production**. By connecting Make projects directly to your agent via MCP, you can extract resources and reuse them in your codebase. This reduces friction when extending prototypes into real applications, and ensures that design intent is faithfully carried through to implementation.
@@ -509,8 +497,6 @@ With this integration, you can:
 2. Prompt the agent: *"I want to get the popup component behavior and styles from this Make file and implement it using my popup component."*
 
 Your agent will fetch the relevant context from Make and guide you in extending your existing popup component with the prototype's functionality and styles.
-
----
 
 # Icon Guidelines
 
