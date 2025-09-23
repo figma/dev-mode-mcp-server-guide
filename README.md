@@ -1,4 +1,4 @@
-# Figma Dev Mode MCP Server Guide
+# Figma MCP Server Guide
 
 The Dev Mode MCP server brings Figma directly into your workflow by providing important design information and context to AI agents generating code from Figma design files.
 
