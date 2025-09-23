@@ -24,7 +24,10 @@ The Dev Mode MCP server brings Figma directly into your workflow by providing im
 
   [Learn more about Code Connect →](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
 
+---
+
 ## Step 1: Enable the MCP Server
+
 
 1. Open the [Figma desktop app](https://www.figma.com/downloads/) and make sure you've [updated to the latest version](https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app#h_01HE5QD60DG6FEEDTZVJYM82QW).
 2. Create or open a Figma Design file.
@@ -150,13 +153,6 @@ The Dev Mode MCP server introduces a set of tools that help LLMs translate desig
 
 There are two ways to provide Figma design context to your AI client:
 
-### Selection-based
-
-1. Select a frame or layer inside Figma using the desktop app.
-2. Prompt your client to help you implement your current selection.
-
-   <img src="https://help.figma.com/hc/article_attachments/32209690330263" width="300" />
-
 ### Link-based
 
 1. Copy the link to a frame or layer in Figma.
@@ -166,6 +162,16 @@ There are two ways to provide Figma design context to your AI client:
 
 > [!NOTE]
 > Your client won't be able to navigate to the selected URL, but it will extract the node-id that is required for the MCP server to identify which object to return information about.
+
+### Selection-based (local only)
+
+1. Select a frame or layer inside Figma using the desktop app.
+2. Prompt your client to help you implement your current selection.
+
+   <img src="https://help.figma.com/hc/article_attachments/32209690330263" width="300" />
+
+
+---
 
 ## Tools and usage suggestions
 
@@ -186,7 +192,7 @@ Use this to generate code for your Figma selection using the MCP server. The def
 
   [Learn how to set up Code Connect for better component reuse →](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
 
-### `get_variable_defs`
+### `get_variable_defs` (local only)
 
 Returns variables and styles used in your selection—like colors, spacing, and typography.
 
@@ -197,7 +203,7 @@ Returns variables and styles used in your selection—like colors, spacing, and 
 - Get both names and values
   - "List the variable names and their values used in my Figma selection."
 
-### `get_code_connect_map`
+### `get_code_connect_map` (local only)
 
 Retrieves a mapping between Figma node IDs and their corresponding code components in your codebase. Specifically, it returns an object where each key is a Figma node ID, and the value contains:
 
@@ -218,11 +224,11 @@ After running the tool, save the output to the appropriate `rules/` or `instruct
 
 ### `get_metadata`
 
-Returns an XML representation of your selection containing basic properties such as layer IDs, names, types, position and sizes. You can use `get_code` on the resulting outline to retrieve only the styling information of the design you need. 
- 
+Returns an XML representation of your selection containing basic properties such as layer IDs, names, types, position and sizes. You can use `get_code` on the resulting outline to retrieve only the styling information of the design you need.
+
 This is useful for very large designs where `get_code` produces output with a large context size. It also works with multiple selections or the whole page if nothing is selected.
 
-## Dev Mode MCP Server Settings
+## Dev Mode Local MCP Server Settings
 
 These are additional settings you can toggle under Preferences and use with the MCP client.
 
@@ -239,6 +245,8 @@ These are additional settings you can toggle under Preferences and use with the 
 Includes Code Connect mappings in the response, so the generated code can reuse components from your connected codebase where possible.
 
 > As you use the Dev Mode MCP server, you may see a popup inside Figma asking you for feedback. To give us feedback, [please use this form](https://form.asana.com/?k=jMdFq_1SBUOyh8_k3q76QA&d=10497086658021).
+
+---
 
 # MCP best practices
 
@@ -303,7 +311,7 @@ You can provide this in whatever format your MCP client uses for instruction fil
 
 **Examples:**
 
-### Cursor
+#### Cursor
 
 ```yaml
 ---
@@ -317,7 +325,7 @@ alwaysApply: true
 - IMPORTANT: do NOT use or create placeholders if a localhost source is provided
 ```
 
-### Claude Code
+#### Claude Code
 
 ```markdown
 # MCP Servers
@@ -328,7 +336,7 @@ alwaysApply: true
 - IMPORTANT: do NOT use or create placeholders if a localhost source is provided
 ```
 
-### General rules
+#### General rules
 
 ```
 - IMPORTANT: Always use components from `/path_to_your_design_system` when possible
@@ -343,7 +351,7 @@ Adding these once can dramatically reduce the need for repetitive prompting and 
 
 Be sure to check your IDE or MCP client's documentation for how to structure rules, and experiment to find what works best for your team. Clear, consistent guidance often leads to better, more reusable code with less back-and-forth.
 
-## Break down large selections
+### Break down large selections
 
 Break screens into smaller parts (like components or logical chunks) for faster, more reliable results.
 
@@ -355,6 +363,8 @@ Large selections can slow the tools down, cause errors, or result in incomplete 
 This helps keep the context manageable and results more predictable, both for you and for the model.
 
 If something in the output doesn't look quite right, it usually helps to revisit the basics: how the Figma file is structured, how the prompt is written, and what context is being sent. Following the best practices above can make a big difference, and often leads to more consistent, reusable code.
+
+---
 
 # Icon Guidelines
 
