@@ -316,6 +316,8 @@ Returns an XML representation of your selection containing basic properties such
 
 This is useful for very large designs where `get_code` produces output with a large context size. It also works with multiple selections or the whole page if nothing is selected.
 
+---
+
 ## Dev Mode Local MCP Server Settings
 
 These are additional settings you can toggle under Preferences and use with the MCP client.
@@ -475,6 +477,38 @@ Large selections can slow the tools down, cause errors, or result in incomplete 
 This helps keep the context manageable and results more predictable, both for you and for the model.
 
 If something in the output doesn't look quite right, it usually helps to revisit the basics: how the Figma file is structured, how the prompt is written, and what context is being sent. Following the best practices above can make a big difference, and often leads to more consistent, reusable code.
+
+---
+
+## Bringing Make context to your agent
+
+The Make + MCP integration makes it easier to take prototypes from **design to production**. By connecting Make projects directly to your agent via MCP, you can extract resources and reuse them in your codebase. This reduces friction when extending prototypes into real applications, and ensures that design intent is faithfully carried through to implementation.
+
+With this integration, you can:
+
+• **Fetch project context** directly from Make (individual files or the whole project)
+• **Prompt to use existing code components** instead of starting from scratch
+• **Extend prototypes with real data** to validate and productionize designs faster
+
+### How it works
+
+> [!NOTE]
+> This integration leverages the MCP **resources capability**, which allows your agent to fetch context directly from Make projects. It is available only on clients that support MCP resources.
+
+#### Steps to fetch resources from Make
+
+1. **Prompt your agent to fetch context** by providing a valid Make link
+2. **Receive a list of available files** from your Make project
+3. **Download the files you want to fetch** when prompted
+
+### Example workflow
+
+**Goal:** Implement a popup component in your production codebase that matches the design and behavior defined in Make.
+
+1. Share your Make project link with your agent.
+2. Prompt the agent: *"I want to get the popup component behavior and styles from this Make file and implement it using my popup component."*
+
+Your agent will fetch the relevant context from Make and guide you in extending your existing popup component with the prototype's functionality and styles.
 
 ---
 
