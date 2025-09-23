@@ -59,8 +59,11 @@ Different MCP clients require slightly different setups to get connected to your
 1. Use the shortcut `⌘ Shift P` to search for `MCP:Add Server`.
 2. Select `HTTP`.
 3. Copy the correct server url from below, and paste the server url in the search bar. Then hit `Enter`.
-  Remote server url - `https://mcp.figma.com/mcp`
-  Local server url  - `http://127.0.0.1:3845/mcp`
+
+   Remote server url - `https://mcp.figma.com/mcp`
+
+   Local server url  - `http://127.0.0.1:3845/mcp`
+
 4. Type in `Figma Dev Mode MCP` when it asks for a Server ID, then hit `Enter`.
 5. Select whether you want to add this server globally or only for the current workspace. Once confirmed, you'll see a configuration like this in your `mcp.json` file:
 
