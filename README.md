@@ -477,9 +477,9 @@ The Make + MCP integration makes it easier to take prototypes from **design to p
 
 With this integration, you can:
 
-• **Fetch project context** directly from Make (individual files or the whole project)
-• **Prompt to use existing code components** instead of starting from scratch
-• **Extend prototypes with real data** to validate and productionize designs faster
+- **Fetch project context** directly from Make (individual files or the whole project)
+- **Prompt to use existing code components** instead of starting from scratch
+- **Extend prototypes with real data** to validate and productionize designs faster
 
 ### How it works
 
