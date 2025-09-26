@@ -1,12 +1,14 @@
 # Figma MCP Server Guide
 
-The Dev Mode MCP server brings Figma directly into your workflow by providing important design information and context to AI agents generating code from Figma design files.
+The Figma MCP server brings Figma directly into your workflow by providing important design information and context to AI agents generating code from Figma design files.
 
 > [!WARNING]
-> 🚧 The Dev Mode MCP Server is currently in [open beta](https://help.figma.com/hc/en-us/articles/4406787442711). Some functions and settings may not yet be available. The feature may change and you may experience bugs or performance issues during the beta period.
+> 🚧 The Figma MCP server is currently in [open beta](https://help.figma.com/hc/en-us/articles/4406787442711). Some functions and settings may not yet be available. The feature may change and you may experience bugs or performance issues during the beta period.
 
 > [!NOTE]
 > Available on a [Dev or Full seat](https://help.figma.com/hc/en-us/articles/27468498501527-Updates-to-Figma-s-pricing-seats-and-billing-experience#h_01JCPBM8X2MBEXTABDM92HWZG4) on the [Professional, Organization, or Enterprise plans](https://help.figma.com/hc/en-us/articles/360040328273-Figma-plans-and-features).
+
+For the complete set of Figma MCP server docs, see our [developer documentation](https://developers.figma.com/docs/figma-mcp-server/).
 
 ## Features
 
@@ -37,7 +39,7 @@ If you want to use our Remote server, there is nothing to enable, it's already o
 1. Open the [Figma desktop app](https://www.figma.com/downloads/) and make sure you've [updated to the latest version](https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app#h_01HE5QD60DG6FEEDTZVJYM82QW).
 2. Create or open a Figma Design file.
 3. In the upper-left corner, open the Figma menu.
-4. Under **Preferences**, select **Enable Dev Mode MCP Server**.
+4. Under **Preferences**, select **Enable local MCP server**.
 
 <img src="https://help.figma.com/hc/article_attachments/33880427925271" width="300" />
 
@@ -52,7 +54,7 @@ You should see a confirmation message at the bottom of the screen letting you kn
 
 ### Step 2: Set up your MCP client
 
-Different MCP clients require slightly different setups to get connected to your MCP server. Follow the instructions below for your specific client to add the Dev Mode MCP server.
+Different MCP clients require slightly different setups to get connected to your MCP server. Follow the instructions below for your specific client to add the Figma MCP server.
 
 #### VS Code
 
@@ -64,7 +66,7 @@ Different MCP clients require slightly different setups to get connected to your
 
    Local server url  - `http://127.0.0.1:3845/mcp`
 
-4. Type in `Figma Dev Mode MCP` when it asks for a Server ID, then hit `Enter`.
+4. Type in `Figma MCP server` when it asks for a Server ID, then hit `Enter`.
 5. Select whether you want to add this server globally or only for the current workspace. Once confirmed, you'll see a configuration like this in your `mcp.json` file:
 
 <table>
@@ -75,7 +77,7 @@ Different MCP clients require slightly different setups to get connected to your
 ```json
 {
   "servers": {
-    "Figma Dev Mode MCP": {
+    "Figma MCP server": {
       "type": "http",
       "url": "https://mcp.figma.com/mcp"
     }
@@ -88,7 +90,7 @@ Different MCP clients require slightly different setups to get connected to your
 ```json
 {
   "servers": {
-    "Figma Dev Mode MCP": {
+    "Figma MCP server": {
       "type": "http",
       "url": "http://127.0.0.1:3845/mcp"
     }
@@ -100,7 +102,7 @@ Different MCP clients require slightly different setups to get connected to your
 </table>
 
 6. Open the chat toolbar using `⌥⌘B` or `⌃⌘I` and switch to **Agent** mode.
-7. With the chat open, type in `#get_code` to confirm that the Dev Mode MCP server tools are available. If no tools are listed, restart the Figma desktop app and VS Code.
+7. With the chat open, type in `#get_code` to confirm that the Figma MCP server tools are available. If no tools are listed, restart the Figma desktop app and VS Code.
 
 > [!NOTE]
 > You must have [GitHub Copilot](https://github.com/features/copilot) enabled on your account to use MCP in VS Code.
@@ -186,23 +188,11 @@ claude mcp add --transport http figma-dev-mode-mcp-server http://127.0.0.1:3845/
 
 For more information, see [Anthropic's official documentation](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials#set-up-model-context-protocol-mcp).
 
-#### Windsurf
-
-1. Open **Windsurf → Settings → Windsurf Settings** or use the shortcut `⌘ ,`.
-2. Navigate to **Cascade settings** and select **Open plugin store**.
-3. Search for **Figma** and install the plugin.
-4. Open **Cascade** and you should see the Figma MCP server and available tools.
-
-For more information, see [Windsurf's official documentation](https://docs.windsurf.com/windsurf/mcp).
-
-> [!NOTE]
-> For Windsurf, change the `url` property in the configuration file to `serverUrl` to avoid errors.
-
 #### Other editors
 
-Other code editors and tools that support Streamable HTTP can also connect to the Dev Mode MCP server.
+Other code editors and tools that support Streamable HTTP can also connect to the Figma MCP server.
 
-If you're using a different editor or tool, check its documentation to confirm it supports Streamable HTTP based communication. If it does, you can manually add the Dev Mode MCP server using this configuration:
+If you're using a different editor or tool, check its documentation to confirm it supports Streamable HTTP based communication. If it does, you can manually add the Figma MCP server using this configuration:
 
 <table>
 <tr><th>Using the Remote MCP Server</th><th>Using the Local MCP Server</th></tr>
@@ -212,7 +202,7 @@ If you're using a different editor or tool, check its documentation to confirm i
 ```json
 {
   "mcpServers": {
-    "Figma Dev Mode MCP": {
+    "Figma MCP server": {
       "url": "https://mcp.figma.com/mcp"
     }
   }
@@ -224,7 +214,7 @@ If you're using a different editor or tool, check its documentation to confirm i
 ```json
 {
   "mcpServers": {
-    "Figma Dev Mode MCP": {
+    "Figma MCP server": {
       "url": "http://127.0.0.1:3845/mcp"
     }
   }
@@ -236,7 +226,7 @@ If you're using a different editor or tool, check its documentation to confirm i
 
 ## Prompting your MCP client
 
-The Dev Mode MCP server introduces a set of tools that help LLMs translate designs in Figma. Once connected, you can prompt your MCP client to access a specific design node.
+The Figma MCP server introduces a set of tools that help LLMs translate designs in Figma. Once connected, you can prompt your MCP client to access a specific design node.
 
 There are two ways to provide Figma design context to your AI client:
 
@@ -329,7 +319,7 @@ These are additional settings you can toggle under Preferences and use with the 
 
 Includes Code Connect mappings in the response, so the generated code can reuse components from your connected codebase where possible.
 
-> As you use the Dev Mode MCP server, you may see a popup inside Figma asking you for feedback. To give us feedback, [please use this form](https://form.asana.com/?k=jMdFq_1SBUOyh8_k3q76QA&d=10497086658021).
+> As you use the Figma MCP server, you may see a popup inside Figma asking you for feedback. To give us feedback, [please use this form](https://form.asana.com/?k=jMdFq_1SBUOyh8_k3q76QA&d=10497086658021).
 
 # MCP best practices
 
@@ -422,12 +412,12 @@ These rules define how to translate Figma inputs into code for this project and 
 
 ```yaml
 ---
-description: Figma Dev Mode MCP rules
+description: Figma MCP server rules
 globs:
 alwaysApply: true
 ---
-- The Figma Dev Mode MCP Server provides an assets endpoint which can serve image and SVG assets
-- IMPORTANT: If the Figma Dev Mode MCP Server returns a localhost source for an image or an SVG, use that image or SVG source directly
+- The Figma MCP server provides an assets endpoint which can serve image and SVG assets
+- IMPORTANT: If the Figma MCP server returns a localhost source for an image or an SVG, use that image or SVG source directly
 - IMPORTANT: DO NOT import/add new icon packages, all the assets should be in the Figma payload
 - IMPORTANT: do NOT use or create placeholders if a localhost source is provided
 ```
@@ -436,9 +426,9 @@ alwaysApply: true
 
 ```markdown
 # MCP Servers
-## Figma Dev Mode MCP Rules
-- The Figma Dev Mode MCP Server provides an assets endpoint which can serve image and SVG assets
-- IMPORTANT: If the Figma Dev Mode MCP Server returns a localhost source for an image or an SVG, use that image or SVG source directly
+## Figma MCP server rules
+- The Figma MCP server provides an assets endpoint which can serve image and SVG assets
+- IMPORTANT: If the Figma MCP server returns a localhost source for an image or an SVG, use that image or SVG source directly
 - IMPORTANT: DO NOT import/add new icon packages, all the assets should be in the Figma payload
 - IMPORTANT: do NOT use or create placeholders if a localhost source is provided
 ```
