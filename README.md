@@ -8,6 +8,8 @@ The Figma MCP server brings Figma directly into your workflow by providing impor
 > [!NOTE]
 > Available on a [Dev or Full seat](https://help.figma.com/hc/en-us/articles/27468498501527-Updates-to-Figma-s-pricing-seats-and-billing-experience#h_01JCPBM8X2MBEXTABDM92HWZG4) on the [Professional, Organization, or Enterprise plans](https://help.figma.com/hc/en-us/articles/360040328273-Figma-plans-and-features).
 
+For the complete set of Figma MCP server docs, see our [developer documentation](https://developers.figma.com/docs/figma-mcp-server/).
+
 ## Features
 
 - **Generate code from selected frames**
