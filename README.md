@@ -66,18 +66,21 @@ Different MCP clients require slightly different setups to get connected to your
 
    Local server url  - `http://127.0.0.1:3845/mcp`
 
-4. Type in `Figma MCP server` when it asks for a Server ID, then hit `Enter`.
+4. When you're prompted for a server ID, enter one of the following:
+
+    - `figma` for the remote MCP server
+    - `figma-desktop` for the local MCP server
 5. Select whether you want to add this server globally or only for the current workspace. Once confirmed, you'll see a configuration like this in your `mcp.json` file:
 
 <table>
-<tr><th>Using the Remote MCP Server</th><th>Using the Local MCP Server</th></tr>
+<tr><th>Using the remote MCP Server</th><th>Using the local MCP Server</th></tr>
 <tr>
 <td>
 
 ```json
 {
   "servers": {
-    "Figma MCP server": {
+    "figma": {
       "type": "http",
       "url": "https://mcp.figma.com/mcp"
     }
@@ -90,7 +93,7 @@ Different MCP clients require slightly different setups to get connected to your
 ```json
 {
   "servers": {
-    "Figma MCP server": {
+    "figma-desktop": {
       "type": "http",
       "url": "http://127.0.0.1:3845/mcp"
     }
@@ -117,14 +120,14 @@ Different MCP clients require slightly different setups to get connected to your
 4. Enter the following configuration and save:
 
 <table>
-<tr><th>Using the Remote MCP Server</th><th>Using the Local MCP Server</th></tr>
+<tr><th>Using the remote MCP Server</th><th>Using the local MCP Server</th></tr>
 <tr>
 <td>
 
 ```json
 {
   "mcpServers": {
-    "Figma": {
+    "figma": {
       "url": "https://mcp.figma.com/mcp"
     }
   }
@@ -136,7 +139,7 @@ Different MCP clients require slightly different setups to get connected to your
 ```json
 {
   "mcpServers": {
-    "Figma": {
+    "figma-desktop": {
       "url": "http://127.0.0.1:3845/mcp"
     }
   }
@@ -155,18 +158,18 @@ For more information, see [Cursor's official documentation](https://docs.cursor.
 
 
 <table>
-<tr><th>Using the Remote MCP Server</th><th>Using the Local MCP Server</th></tr>
+<tr><th>Using the remote MCP Server</th><th>Using the local MCP Server</th></tr>
 <tr>
 <td>
 
 ```bash
-claude mcp add --transport http figma-dev-mode-mcp-server https://mcp.figma.com/mcp
+claude mcp add --transport http figma https://mcp.figma.com/mcp
 ```
 </td>
 <td>
 
 ```bash
-claude mcp add --transport http figma-dev-mode-mcp-server http://127.0.0.1:3845/mcp
+claude mcp add --transport http figma-desktop http://127.0.0.1:3845/mcp
 ```
 </td>
 </tr>
@@ -195,14 +198,14 @@ Other code editors and tools that support Streamable HTTP can also connect to th
 If you're using a different editor or tool, check its documentation to confirm it supports Streamable HTTP based communication. If it does, you can manually add the Figma MCP server using this configuration:
 
 <table>
-<tr><th>Using the Remote MCP Server</th><th>Using the Local MCP Server</th></tr>
+<tr><th>Using the remote MCP Server</th><th>Using the local MCP Server</th></tr>
 <tr>
 <td>
 
 ```json
 {
   "mcpServers": {
-    "Figma MCP server": {
+    "figma": {
       "url": "https://mcp.figma.com/mcp"
     }
   }
@@ -214,7 +217,7 @@ If you're using a different editor or tool, check its documentation to confirm i
 ```json
 {
   "mcpServers": {
-    "Figma MCP server": {
+    "figma-desktop": {
       "url": "http://127.0.0.1:3845/mcp"
     }
   }
