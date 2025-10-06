@@ -32,16 +32,16 @@ For the complete set of Figma MCP server docs, see our [developer documentation]
 
 Figma provides two ways to use the MCP server. Remotely using our hosted server, and locally using Figma's desktop app.
 
-If you want to use our Remote server, there is nothing to enable, it's already on! To get the Local server set up, you'll need to follow the steps below.
+If you want to use our remote server, there's nothing to enable, it's already available! To get the local desktop server set up, you'll need to follow the steps below.
 
-#### Enabling the local server
+#### Enabling the desktop server
 
 1. Open the [Figma desktop app](https://www.figma.com/downloads/) and make sure you've [updated to the latest version](https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app#h_01HE5QD60DG6FEEDTZVJYM82QW).
 2. Create or open a Figma Design file.
-3. In the upper-left corner, open the Figma menu.
-4. Under **Preferences**, select **Enable local MCP server**.
+3. In the toolbar at the bottom, toggle to [Dev Mode](https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Dev-Mode) or use the keyboard shortcut <kbd>Shift</kbd><kbd>D</kbd>.
+4. In the **MCP server** section of the inspect panel, click **Enable desktop MCP server**.
 
-<img src="https://help.figma.com/hc/article_attachments/33880427925271" width="300" />
+    <img width="500" height="251" alt="enable-desktop-mcp-server" src="https://github.com/user-attachments/assets/964c7665-1aaa-42e5-ad45-e87ea68d4bdd" />
 
 You should see a confirmation message at the bottom of the screen letting you know the server is enabled and running.
 
@@ -69,11 +69,11 @@ Different MCP clients require slightly different setups to get connected to your
 4. When you're prompted for a server ID, enter one of the following:
 
     - `figma` for the remote MCP server
-    - `figma-desktop` for the local MCP server
+    - `figma-desktop` for the desktop MCP server
 5. Select whether you want to add this server globally or only for the current workspace. Once confirmed, you'll see a configuration like this in your `mcp.json` file:
 
 <table>
-<tr><th>Using the remote MCP Server</th><th>Using the local MCP Server</th></tr>
+<tr><th>Using the remote MCP Server</th><th>Using the desktop MCP Server</th></tr>
 <tr>
 <td>
 
@@ -120,7 +120,7 @@ Different MCP clients require slightly different setups to get connected to your
 4. Enter the following configuration and save:
 
 <table>
-<tr><th>Using the remote MCP Server</th><th>Using the local MCP Server</th></tr>
+<tr><th>Using the remote MCP Server</th><th>Using the desktop MCP Server</th></tr>
 <tr>
 <td>
 
@@ -158,7 +158,7 @@ For more information, see [Cursor's official documentation](https://docs.cursor.
 
 
 <table>
-<tr><th>Using the remote MCP Server</th><th>Using the local MCP Server</th></tr>
+<tr><th>Using the remote MCP Server</th><th>Using the desktop MCP Server</th></tr>
 <tr>
 <td>
 
@@ -198,7 +198,7 @@ Other code editors and tools that support Streamable HTTP can also connect to th
 If you're using a different editor or tool, check its documentation to confirm it supports Streamable HTTP based communication. If it does, you can manually add the Figma MCP server using this configuration:
 
 <table>
-<tr><th>Using the remote MCP Server</th><th>Using the local MCP Server</th></tr>
+<tr><th>Using the remote MCP Server</th><th>Using the desktop MCP Server</th></tr>
 <tr>
 <td>
 
@@ -243,7 +243,7 @@ There are two ways to provide Figma design context to your AI client:
 > [!NOTE]
 > Your client won't be able to navigate to the selected URL, but it will extract the node-id that is required for the MCP server to identify which object to return information about.
 
-### Selection-based (local only)
+### Selection-based (desktop only)
 
 1. Select a frame or layer inside Figma using the desktop app.
 2. Prompt your client to help you implement your current selection.
@@ -270,7 +270,7 @@ Use this to generate code for your Figma selection using the MCP server. The def
 
   [Learn how to set up Code Connect for better component reuse →](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
 
-### `get_variable_defs` (local only)
+### `get_variable_defs` (desktop only)
 
 Returns variables and styles used in your selection—like colors, spacing, and typography.
 
@@ -281,7 +281,7 @@ Returns variables and styles used in your selection—like colors, spacing, and 
 - Get both names and values
   - "List the variable names and their values used in my Figma selection."
 
-### `get_code_connect_map` (local only)
+### `get_code_connect_map` (desktop only)
 
 Retrieves a mapping between Figma node IDs and their corresponding code components in your codebase. Specifically, it returns an object where each key is a Figma node ID, and the value contains:
 
