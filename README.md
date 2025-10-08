@@ -306,7 +306,7 @@ Returns an XML representation of your selection containing basic properties such
 
 This is useful for very large designs where `get_code` produces output with a large context size. It also works with multiple selections or the whole page if nothing is selected.
 
-## Local Figma MCP server settings
+## Desktop Figma MCP server settings
 
 These are additional settings you can toggle under Preferences and use with the MCP client.
 
