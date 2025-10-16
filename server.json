@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "com.figma/mcp-server",
+  "title": "Figma MCP Server",
+  "description": "The Figma MCP server brings Figma directly into your workflow by providing important design information and context to AI agents generating code from Figma design files.",
+  "repository": {
+    "url": "https://github.com/figma/mcp-server-guide",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.figma.com/mcp"
+    }
+  ]
+}
