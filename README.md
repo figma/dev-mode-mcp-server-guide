@@ -105,7 +105,7 @@ Different MCP clients require slightly different setups to get connected to your
 </table>
 
 6. Open the chat toolbar using `⌥⌘B` or `⌃⌘I` and switch to **Agent** mode.
-7. With the chat open, type in `#get_code` to confirm that the Figma MCP server tools are available. If no tools are listed, restart the Figma desktop app and VS Code.
+7. With the chat open, type in `#get_design_context` to confirm that the Figma MCP server tools are available. If no tools are listed, restart the Figma desktop app and VS Code.
 
 > [!NOTE]
 > You must have [GitHub Copilot](https://github.com/features/copilot) enabled on your account to use MCP in VS Code.
@@ -253,9 +253,9 @@ There are two ways to provide Figma design context to your AI client:
 
 ## Tools and usage suggestions
 
-### `get_code`
+### `get_design_context`
 
-Use this to generate code for your Figma selection using the MCP server. The default output is **React + Tailwind**, but you can customize this through your prompts:
+Use this to get design context for your Figma selection using the MCP server. The default output is **React + Tailwind**, but you can customize this through your prompts:
 
 - Change the framework
   - "Generate my Figma selection in Vue."
@@ -267,6 +267,9 @@ Use this to generate code for your Figma selection using the MCP server. The def
   - "Generate my Figma selection using components from src/ui and style with Tailwind"
 
   You can paste links or select the frame or component in Figma before prompting.
+
+> [!NOTE]
+> Selection-based prompting only works with the desktop MCP server. The remote server requires a link to a frame or layer to extract context.
 
   [Learn how to set up Code Connect for better component reuse →](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
 
@@ -302,9 +305,9 @@ After running the tool, save the output to the appropriate `rules/` or `instruct
 
 ### `get_metadata`
 
-Returns an XML representation of your selection containing basic properties such as layer IDs, names, types, position and sizes. You can use `get_code` on the resulting outline to retrieve only the styling information of the design you need.
+Returns an XML representation of your selection containing basic properties such as layer IDs, names, types, position and sizes. You can use `get_design_context` on the resulting outline to retrieve only the styling information of the design you need.
 
-This is useful for very large designs where `get_code` produces output with a large context size. It also works with multiple selections or the whole page if nothing is selected.
+This is useful for very large designs where `get_design_context` produces output with a large context size. It also works with multiple selections or the whole page if nothing is selected.
 
 ## Desktop Figma MCP server settings
 
@@ -367,7 +370,7 @@ Think of prompts like a brief to a teammate. Clear intent leads to better result
 
 The MCP supports different tools, and each one provides your AI assistant with a different kind of structured context. Sometimes, the assistant doesn't automatically pick the right one, especially as more tools become available. If results are off, try being explicit in your prompt.
 
-- **get_code** provides a structured **React + Tailwind** representation of your Figma selection. This is a starting point that your AI assistant can translate into any framework or code style, depending on your prompt.
+- **get_design_context** provides a structured **React + Tailwind** representation of your Figma selection. This is a starting point that your AI assistant can translate into any framework or code style, depending on your prompt.
 - **get_variable_defs** extracts the variables and styles used in your selection (color, spacing, typography, etc). This helps the model reference your tokens directly in the generated code.
 
 For example, if you're getting raw code instead of tokens, try something like:
@@ -394,10 +397,10 @@ You can provide this in whatever format your MCP client uses for instruction fil
 These rules define how to translate Figma inputs into code for this project and must be followed for every Figma-driven change.
 
 ### Required flow (do not skip)
-1. Run get_code first to fetch the structured representation for the exact node(s).
-2. If the response is too large or truncated, run get_metadata to get the high‑level node map and then re‑fetch only the required node(s) with get_code.
+1. Run get_design_context first to fetch the structured representation for the exact node(s).
+2. If the response is too large or truncated, run get_metadata to get the high‑level node map and then re‑fetch only the required node(s) with get_design_context.
 3. Run get_screenshot for a visual reference of the node variant being implemented.
-4. Only after you have both get_code and get_screenshot, download any assets needed and start implementation.
+4. Only after you have both get_design_context and get_screenshot, download any assets needed and start implementation.
 5. Translate the output (usually React + Tailwind) into this project's conventions, styles and framework.  Reuse the project's color tokens, components, and typography wherever possible.
 6. Validate against Figma for 1:1 look and behavior before marking complete.
 
