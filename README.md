@@ -342,11 +342,11 @@ These are additional settings you can toggle under Preferences and use with the 
 
 **Image settings**
 
-- **Use placeholder images:** Skips image extraction and adds generic placeholders instead - helpful if you prefer swapping them manually in code.
-
 - **Use local image server**: Hosts images on a local server with URLs like `http://localhost:3845/assets/89f254d1a998c9a6d1d324d43c73539c3993b16e.png`.
 
 - **Download**: Saves images directly to disk.
+
+- **(DEPRECATED) Use placeholder images:** Skips image extraction and adds generic placeholders instead - helpful if you prefer swapping them manually in code.
 
 **Enable Code Connect**
 
