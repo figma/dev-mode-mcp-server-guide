@@ -2,11 +2,10 @@
 
 The Figma MCP server brings Figma directly into your workflow by providing important design information and context to AI agents generating code from Figma design files.
 
-> [!WARNING]
-> 🚧 The Figma MCP server is currently in [open beta](https://help.figma.com/hc/en-us/articles/4406787442711). Some functions and settings may not yet be available. The feature may change and you may experience bugs or performance issues during the beta period.
-
 > [!NOTE]
-> Available on a [Dev or Full seat](https://help.figma.com/hc/en-us/articles/27468498501527-Updates-to-Figma-s-pricing-seats-and-billing-experience#h_01JCPBM8X2MBEXTABDM92HWZG4) on the [Professional, Organization, or Enterprise plans](https://help.figma.com/hc/en-us/articles/360040328273-Figma-plans-and-features).
+> Users on the Starter plan or with View or Collab seats on paid plans will be limited to up to 6 tool calls per month.
+> <br><br>
+> Users with a [Dev or Full seat](https://help.figma.com/hc/en-us/articles/27468498501527-Updates-to-Figma-s-pricing-seats-and-billing-experience#h_01JCPBM8X2MBEXTABDM92HWZG4) seat on the [Professional, Organization, or Enterprise plans](https://help.figma.com/hc/en-us/articles/360040328273-Figma-plans-and-features) have per minute rate limits, which follow the same limits as the Tier 1 [Figma REST API](https://developers.figma.com/docs/rest-api/rate-limits/). As with Figma’s REST API, Figma reserves the right to change rate limits.
 
 For the complete set of Figma MCP server docs, see our [developer documentation](https://developers.figma.com/docs/figma-mcp-server/).
 
@@ -255,6 +254,8 @@ There are two ways to provide Figma design context to your AI client:
 
 ### `get_design_context`
 
+**Supported file types:** Figma Design, Figma Make
+
 Use this to get design context for your Figma selection using the MCP server. The default output is **React + Tailwind**, but you can customize this through your prompts:
 
 - Change the framework
@@ -273,7 +274,9 @@ Use this to get design context for your Figma selection using the MCP server. Th
 
   [Learn how to set up Code Connect for better component reuse →](https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect)
 
-### `get_variable_defs` (desktop only)
+### `get_variable_defs`
+
+**Supported file types:** Figma Design
 
 Returns variables and styles used in your selection—like colors, spacing, and typography.
 
@@ -284,7 +287,9 @@ Returns variables and styles used in your selection—like colors, spacing, and 
 - Get both names and values
   - "List the variable names and their values used in my Figma selection."
 
-### `get_code_connect_map` (desktop only)
+### `get_code_connect_map`
+
+**Supported file types:** Figma Design
 
 Retrieves a mapping between Figma node IDs and their corresponding code components in your codebase. Specifically, it returns an object where each key is a Figma node ID, and the value contains:
 
@@ -295,9 +300,13 @@ This mapping is used to connect Figma design elements directly to their React (o
 
 ### `get_screenshot`
 
+**Supported file types:** Figma Design, FigJam
+
 This takes a screenshot of your selection to preserve layout fidelity. Keep this on unless you're managing token limits.
 
 ### `create_design_system_rules`
+
+**Supported file types:** No file context required
 
 Use this tool to create a rule file that gives agents the context they need to generate high-quality front end code. Rule files help align output with your design system and tech stack, improving accuracy and ensuring code is tailored to your needs.
 
@@ -305,9 +314,27 @@ After running the tool, save the output to the appropriate `rules/` or `instruct
 
 ### `get_metadata`
 
+**Supported file types:** Figma Design
+
 Returns an XML representation of your selection containing basic properties such as layer IDs, names, types, position and sizes. You can use `get_design_context` on the resulting outline to retrieve only the styling information of the design you need.
 
 This is useful for very large designs where `get_design_context` produces output with a large context size. It also works with multiple selections or the whole page if nothing is selected.
+
+### `get_figjam`
+
+**Supported file types:** FigJam
+
+This tool returns metadata for FigJam diagrams in XML format, similar to `get_metadata`. In addition to returning basic properties like layer IDs, names, types, positions, and sizes, it also includes screenshots of the nodes.
+
+### `whoami` (remote only)
+
+**Supported file types:** No file context required
+
+This tool returns the identity of the user that's authenticated to Figma, including:
+
+- The user's email address
+- All of the plans the user belongs to
+- The seat type the user has on each plan
 
 ## Desktop Figma MCP server settings
 
@@ -315,11 +342,11 @@ These are additional settings you can toggle under Preferences and use with the 
 
 **Image settings**
 
-- **Use placeholder images:** Skips image extraction and adds generic placeholders instead - helpful if you prefer swapping them manually in code.
-
 - **Use local image server**: Hosts images on a local server with URLs like `http://localhost:3845/assets/89f254d1a998c9a6d1d324d43c73539c3993b16e.png`.
 
 - **Download**: Saves images directly to disk.
+
+- **(DEPRECATED) Use placeholder images:** Skips image extraction and adds generic placeholders instead - helpful if you prefer swapping them manually in code.
 
 **Enable Code Connect**
 
