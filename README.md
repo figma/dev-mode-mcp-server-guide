@@ -4,7 +4,7 @@ The Figma MCP server brings Figma directly into your workflow by providing impor
 
 > [!NOTE]
 > Users on the Starter plan or with View or Collab seats on paid plans will be limited to up to 6 tool calls per month.
->
+> &nbsp;
 > Users with a [Dev or Full seat](https://help.figma.com/hc/en-us/articles/27468498501527-Updates-to-Figma-s-pricing-seats-and-billing-experience#h_01JCPBM8X2MBEXTABDM92HWZG4) seat on the [Professional, Organization, or Enterprise plans](https://help.figma.com/hc/en-us/articles/360040328273-Figma-plans-and-features) have per minute rate limits, which follow the same limits as the Tier 1 [Figma REST API](https://developers.figma.com/docs/rest-api/rate-limits/). As with Figma’s REST API, Figma reserves the right to change rate limits.
 
 For the complete set of Figma MCP server docs, see our [developer documentation](https://developers.figma.com/docs/figma-mcp-server/).
